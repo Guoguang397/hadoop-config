@@ -38,3 +38,6 @@ NameNode|NameNode2|DataNode|ResourceManager|NodeManager
  x| |x| |x
   | | |x|x|x
   | |x|x| |x
+
+## Update Environment Variables
+- `source /etc/profile`

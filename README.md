@@ -13,9 +13,6 @@ Hadoop 2.7.2: http://archive.apache.org/dist/hadoop/core/hadoop-2.7.2/
 
 - Disable: `systemctl disable ufw`
 
-
-### 0x02: Setup hosts
-
 ## Extra Operations
 ### 0x01: Change Host Name
 - Temporary: `/etc/hostname`
@@ -28,3 +25,16 @@ Hadoop 2.7.2: http://archive.apache.org/dist/hadoop/core/hadoop-2.7.2/
 - Edit file: `/etc/hosts`
 
 - Ping test: `ping [-c <Times>] <addr>`
+
+## Structure
+- NameNode
+- DataNode
+- Snapshot
+- Resource Manager
+- Node Manager
+
+NameNode|NameNode2|DataNode|ResourceManager|NodeManager
+--|--|--|--|--
+ x| |x| |x
+  | | |x|x|x
+  | |x|x| |x

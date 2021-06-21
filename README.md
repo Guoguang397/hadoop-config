@@ -45,7 +45,7 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 
 
 ### 0x04: Setup Hadoop Config
-#### Config Files
+#### core-site.xml
 - Core config: `~/hadoop/hadoop-2.7.2/etc/hadoop/core-site.xml`
 
 ```xml
@@ -65,6 +65,7 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 </configuration>
 ```
 ---
+#### hdfs-site.xml
 - HDFS config: `~/hadoop/hadoop-2.7.2/etc/hadoop/hdfs-site.xml`
 ```xml
 <configuration>
@@ -91,7 +92,8 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 ```
 
 ---
-- Yarn site config: `~/hadoop/hadoop-2.7.2/etc/hadoop/yarn-site.xml`
+#### yarn-site.xml
+- Yarn config: `~/hadoop/hadoop-2.7.2/etc/hadoop/yarn-site.xml`
 ```xml
 <configuration>
 
@@ -131,6 +133,7 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 ```
 
 ---
+#### maprd-site.xml
 - Mapreduce config: `~/hadoop/hadoop-2.7.2/etc/hadoop/maprd-site.xml`
 ```xml
 <?xml version="1.0"?>
@@ -188,6 +191,10 @@ hadoop3
 ```
 ### 0x05 Start Hadoop
 
+### 0x06 Start Hadoop
+- Start HDFS (Run on Namenode): `sbin/start-dfs.sh`
+- Start yarn (Run on ResourceManager): `sbin/start-yarn.sh`
+- Download file from hdfs: `hdfs dfs -get <src> <dst>`
 
 ## Extra Operations
 ### 0x01: Change Host Name

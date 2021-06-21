@@ -26,7 +26,7 @@
 <!--file store -->
 <property>
         <name>hadoop.tmp.dir</name>
-        <value>/root/hadoop/hadoop-2.7.2/data/tmp</value>
+        <value>/home/student/hadoop/hadoop-2.7.2/data/tmp</value>
 </property>
 
 </configuration>

@@ -5,6 +5,19 @@ Documents: https://hadoop.apache.org/docs/r2.7.2/
 
 Hadoop 2.7.2: http://archive.apache.org/dist/hadoop/core/hadoop-2.7.2/
 
+## Structure
+- NameNode
+- DataNode
+- Snapshot
+- Resource Manager
+- Node Manager
+
+|NameNode|NameNode2|DataNode|ResourceManager|NodeManager|
+|:--:|:--:|:--:|:--:|:--:|
+|x| |x| |x|
+| | |x|x|x|
+| |x|x| |x|
+
 ## Installation
 ### 0x01: Turn off firewall (Run with root privilege)
 - Check Status: `systemctl status ufw`
@@ -25,8 +38,21 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 ```
 - Update environment variables: `source /etc/profile`
 
+### 0x03: Change Host Name and hosts
+- Temporary: `/etc/hostname`
 
-### 0x03: Setup SSH
+- Permanent `hostnamectl set-hostname <hostname>`
+
+- Lookup ip: `ifconfig`
+
+- Edit file: `/etc/hosts`
+
+- Don't forget this one: `/etc/profile.d/hosts.sh`
+
+- Ping test: `ping [-c <Times>] <addr>`
+
+
+### 0x04: Setup SSH
 - Install SSH: `apt install ssh`
 
 - Edit SSH config: `sudo vim sshd_config` -> `PermitRootLogin yes`
@@ -44,7 +70,7 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 
 
 
-### 0x04: Setup Hadoop Config
+### 0x05: Setup Hadoop Config
 #### core-site.xml
 - Core config: `~/hadoop/hadoop-2.7.2/etc/hadoop/core-site.xml`
 
@@ -59,7 +85,7 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 <!--file store -->
 <property>
         <name>hadoop.tmp.dir</name>
-        <value>/root/hadoop/hadoop-2.7.2/data/tmp</value>
+        <value>/home/student/hadoop/hadoop-2.7.2/data/tmp</value>
 </property>
 
 </configuration>
@@ -189,40 +215,12 @@ hadoop1
 hadoop2
 hadoop3
 ```
-### 0x05 Format HDFS
+### 0x06 Format HDFS
 - Exec: `bin/hdfs namenode-format`
 
+This command should be run only once.
 
-### 0x06 Start Hadoop
+### 0x07 Start Hadoop
 - Start HDFS (Run on Namenode): `sbin/start-dfs.sh`
 - Start yarn (Run on ResourceManager): `sbin/start-yarn.sh`
 - Download file from hdfs: `hdfs dfs -get <src> <dst>`
-
-## Extra Operations
-### 0x01: Change Host Name
-- Temporary: `/etc/hostname`
-
-- Permanent `hostnamectl set-hostname <hostname>`
-
-### 0x02: Change hosts
-- Lookup ip: `ifconfig`
-
-- Edit file: `/etc/hosts`
-
-- Ping test: `ping [-c <Times>] <addr>`
-
-## Structure
-- NameNode
-- DataNode
-- Snapshot
-- Resource Manager
-- Node Manager
-
-|NameNode|NameNode2|DataNode|ResourceManager|NodeManager|
-|:--:|:--:|:--:|:--:|:--:|
-|x| |x| |x|
-| | |x|x|x|
-| |x|x| |x|
-
-## Update Environment Variables
-- `source /etc/profile`

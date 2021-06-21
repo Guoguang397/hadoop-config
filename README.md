@@ -190,8 +190,6 @@ hadoop2
 hadoop3
 ```
 ### 0x05 Start Hadoop
-
-### 0x06 Start Hadoop
 - Start HDFS (Run on Namenode): `sbin/start-dfs.sh`
 - Start yarn (Run on ResourceManager): `sbin/start-yarn.sh`
 - Download file from hdfs: `hdfs dfs -get <src> <dst>`

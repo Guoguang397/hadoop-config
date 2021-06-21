@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export JAVA_HOME=/home/hadoop/jdk1.8.0_144/
+export JAVA_HOME=/home/student/hadoop/jdk1.8.0_144/
 
 export HADOOP_JOB_HISTORYSERVER_HEAPSIZE=1000
 

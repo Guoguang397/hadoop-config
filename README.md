@@ -35,15 +35,18 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 
 - Copy key: `ssh-copy-id root@hadoop2`
 
+- Forget saved Key(s): `ssh-keygen -R hadoop1`
+
+#### Scp Usage
 - Copy files: `scp <src> root@hadoop2:/tmp`
 
 - Copy folder: `scp -r ...`
 
-- Forget saved Key(s): `ssh-keygen -R hadoop1`
 
 
 ### 0x04: Setup Hadoop Config
-- Site config: `~/hadoop/hadoop-2.7.2/etc/hadoop/core-site.xml`
+#### Config Files
+- Core config: `~/hadoop/hadoop-2.7.2/etc/hadoop/core-site.xml`
 
 ```xml
 <configuration>
@@ -61,7 +64,8 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 
 </configuration>
 ```
-- HDFS config: `~/hadoop/hadoop-2.7.2/etc/hadoop/core-site.xml`
+---
+- HDFS config: `~/hadoop/hadoop-2.7.2/etc/hadoop/hdfs-site.xml`
 ```xml
 <configuration>
 
@@ -86,14 +90,105 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 </configuration>
 ```
 
-- Edit: `hadoop-env.sh` -> `export JAVA_HOME=/root/hadoop/jdk1.8.0_144`
+---
+- Yarn site config: `~/hadoop/hadoop-2.7.2/etc/hadoop/yarn-site.xml`
+```xml
+<configuration>
 
+<!-- Site specific YARN configuration properties -->
+
+<!-- Determine how the reducer gets data -->
+<property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+</property>
+
+<!-- Resource Manager Addr -->
+<property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>hadoop2</value>
+</property>
+
+<!-- Resource Manager Web Addr -->
+<property>
+    <name>yarn.resourcemanager.webapp.address</name>
+    <value>0.0.0.0:8088</value>
+</property>
+
+<!-- Log aggregation enabled -->
+<property>
+    <name>yarn.log-aggregation.enable</name>
+    <value>true</value>
+</property>
+
+<!-- Log aggregation retain (s) -->
+<property>
+    <name>yarn.log-aggregation.retain</name>
+    <value>604800</value>
+</property>
+
+</configuration>
+```
+
+---
+- Mapreduce config: `~/hadoop/hadoop-2.7.2/etc/hadoop/maprd-site.xml`
+```xml
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<!-- Run on yarn -->
+<property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+</property>
+
+<!-- History Server Addr -->
+<property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>hadoop1:10020</value>
+</property>
+
+<!-- History Server Web Addr -->
+<property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>0.0.0.0:19888</value>
+</property>
+
+</configuration>
+```
+
+#### Config Env scripts
+- Edit: `hadoop-env.sh` -> `export JAVA_HOME=/root/hadoop/jdk1.8.0_144`
+- Edit: `yarn-env.sh` -> `export JAVA_HOME=/root/hadoop/jdk1.8.0_144`
+- Edit: `mapred-env.sh` -> `export JAVA_HOME=/root/hadoop/jdk1.8.0_144`
+
+#### Config Nodes
 - Edit slaves: `~/hadoop/hadoop-2.7.2/etc/hadoop/slave`
 ```
 hadoop1
 hadoop2
 hadoop3
 ```
+### 0x05 Start Hadoop
+
+
 ## Extra Operations
 ### 0x01: Change Host Name
 - Temporary: `/etc/hostname`

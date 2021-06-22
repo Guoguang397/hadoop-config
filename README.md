@@ -5,6 +5,11 @@ Documents: https://hadoop.apache.org/docs/r2.7.2/
 
 Hadoop 2.7.2: http://archive.apache.org/dist/hadoop/core/hadoop-2.7.2/
 
+## Web Interfaces
+- http://hadoop1:50070
+- http://hadoop2:8088
+- http://hadoop3:50090
+
 ## Structure
 - NameNode
 - DataNode
@@ -230,4 +235,4 @@ This command should be run only once.
 
 **Notice:** output folder should **NOT** be created before launch jar file.
 
-More usage about HDFS please view [HDFS.md](docs/hdfs.md).
+For more usage about HDFS please view [HDFS Document](docs/hdfs.md).

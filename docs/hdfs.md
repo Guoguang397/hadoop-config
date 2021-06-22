@@ -1,52 +1,52 @@
 ## HDFS Commandline Usage
 
  #### 查看帮助
-  `dfs dfs -help `
+  `hdfs dfs -help `
      
  #### 查看当前目录信息
-  `dfs dfs -ls /`
+  `hdfs dfs -ls /`
      
  #### 上传文件
-  `dfs dfs -put /本地路径 /hdfs路径`
+  `hdfs dfs -put /本地路径 /hdfs路径`
      
  #### 剪切文件
-  `dfs dfs -moveFromLocal a.txt /aa.txt`
+  `hdfs dfs -moveFromLocal a.txt /aa.txt`
      
  #### 下载文件到本地
-  `dfs dfs -get /hdfs路径 /本地路径`
+  `hdfs dfs -get /hdfs路径 /本地路径`
      
  #### 合并下载
-  `dfs dfs -getmerge /hdfs路径文件夹 /合并后的文件`
+  `hdfs dfs -getmerge /hdfs路径文件夹 /合并后的文件`
      
  #### 创建文件夹
-  `dfs dfs -mkdir /hello`
+  `hdfs dfs -mkdir /hello`
      
  #### 创建多级文件夹
-  `dfs dfs -mkdir -p /hello/world`
+  `hdfs dfs -mkdir -p /hello/world`
      
  #### 移动hdfs文件
-  `dfs dfs -mv /hdfs路径 /hdfs路径`
+  `hdfs dfs -mv /hdfs路径 /hdfs路径`
      
  #### 复制hdfs文件
-  `dfs dfs -cp /hdfs路径 /hdfs路径`
+  `hdfs dfs -cp /hdfs路径 /hdfs路径`
      
  #### 删除hdfs文件
-  `dfs dfs -rm /aa.txt`
+  `hdfs dfs -rm /aa.txt`
      
  #### 删除hdfs文件夹
-  `dfs dfs -rm -r /hello`
+  `hdfs dfs -rm -r /hello`
      
  #### 查看hdfs中的文件
-  `dfs dfs -cat /文件`
-  `dfs dfs -tail -f /文件`
+  `hdfs dfs -cat /文件`
+  `hdfs dfs -tail -f /文件`
      
  #### 查看文件夹中有多少个文件
-  `dfs dfs -count /文件夹`
+  `hdfs dfs -count /文件夹`
      
  #### 查看hdfs的总空间
-  `dfs dfs -df /`
+  `hdfs dfs -df /`
 
-  `dfs dfs -df -h /`
+  `hdfs dfs -df -h /`
      
  #### 修改副本数    
-  `dfs dfs -setrep 1 /a.txt`
+  `hdfs dfs -setrep 1 /a.txt`

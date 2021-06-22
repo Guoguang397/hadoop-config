@@ -229,3 +229,5 @@ This command should be run only once.
 - Execute jar: `bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/root/input /user/root/output`
 
 **Notice:** output folder should **NOT** be created before launch jar file.
+
+More usage about HDFS please view [HDFS.md](docs/hdfs.md).

@@ -21,13 +21,13 @@ Hadoop 2.7.2: http://archive.apache.org/dist/hadoop/core/hadoop-2.7.2/
 ## Installation
 ### 0x01: Turn off firewall (Run with root privilege)
 - Check Status: `systemctl status ufw`
-
 - Stop: `systemctl stop ufw`
-
 - Disable: `systemctl disable ufw`
 
-### 0x02: Setup Java Environment
+### 0x02: Setup Environment Variables
+#### Java Environment
 - Path: `vim /etc/profile`
+
 ```sh
 #set java environment
 JAVA_HOME=/home/hadoop/jdk1.8.0_144
@@ -36,39 +36,37 @@ CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib/rt.jar
 PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 export JAVA_HOME JRE_HOME CLASSPATH PATH
 ```
+
+#### Hadoop Environment
+- Path: `vim /etc/profile.d/hadoop.sh`
+
+```sh
+export HADOOP_HOME=/home/student/hadoop/hadoop-2.7.2
+export PATH=$PATH:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
+export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
+```
+
 - Update environment variables: `source /etc/profile`
 
 ### 0x03: Change Host Name and hosts
 - Temporary: `/etc/hostname`
-
 - Permanent `hostnamectl set-hostname <hostname>`
-
 - Lookup ip: `ifconfig`
-
 - Edit file: `/etc/hosts`
-
 - Don't forget this one: `/etc/profile.d/hosts.sh`
-
 - Ping test: `ping [-c <Times>] <addr>`
 
 
 ### 0x04: Setup SSH
 - Install SSH: `apt install ssh`
-
 - Edit SSH config: `sudo vim sshd_config` -> `PermitRootLogin yes`
-
 - Generate Key Pair: `ssh-keygen -t rsa`
-
 - Copy key: `ssh-copy-id root@hadoop2`
-
 - Forget saved Key(s): `ssh-keygen -R hadoop1`
 
 #### Scp Usage
 - Copy files: `scp <src> root@hadoop2:/tmp`
-
 - Copy folder: `scp -r ...`
-
-
 
 ### 0x05: Setup Hadoop Config
 #### core-site.xml
@@ -204,9 +202,9 @@ export JAVA_HOME JRE_HOME CLASSPATH PATH
 ```
 
 #### Config Env scripts
-- Edit: `hadoop-env.sh` -> `export JAVA_HOME=/root/hadoop/jdk1.8.0_144`
-- Edit: `yarn-env.sh` -> `export JAVA_HOME=/root/hadoop/jdk1.8.0_144`
-- Edit: `mapred-env.sh` -> `export JAVA_HOME=/root/hadoop/jdk1.8.0_144`
+- Edit: `hadoop-env.sh` -> `export JAVA_HOME=/home/student/hadoop/jdk1.8.0_144`
+- Edit: `yarn-env.sh` -> `export JAVA_HOME=/home/student/hadoop/jdk1.8.0_144`
+- Edit: `mapred-env.sh` -> `export JAVA_HOME=/home/student/hadoop/jdk1.8.0_144`
 
 #### Config Nodes
 - Edit slaves: `~/hadoop/hadoop-2.7.2/etc/hadoop/slave`
@@ -215,7 +213,7 @@ hadoop1
 hadoop2
 hadoop3
 ```
-### 0x06 Format HDFS
+### 0x06 Format HDFS (On hadoop1)
 - Exec: `bin/hdfs namenode-format`
 
 This command should be run only once.
@@ -224,3 +222,10 @@ This command should be run only once.
 - Start HDFS (Run on Namenode): `sbin/start-dfs.sh`
 - Start yarn (Run on ResourceManager): `sbin/start-yarn.sh`
 - Download file from hdfs: `hdfs dfs -get <src> <dst>`
+
+### 0x08 Execute Jar on Hadoop
+- Make directory: `bin/hdfs dfs -mkdir -p /user/root/input`
+- Upload files: `bin/hdfs dfs -put <local> /user/root/input`
+- Execute jar: `bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/root/input /user/root/output`
+
+**Notice:** output folder should **NOT** be created before launch jar file.

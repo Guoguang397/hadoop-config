@@ -212,7 +212,7 @@ export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
 - Edit: `mapred-env.sh` -> `export JAVA_HOME=/home/student/hadoop/jdk1.8.0_144`
 
 #### Config Nodes
-- Edit slaves: `~/hadoop/hadoop-2.7.2/etc/hadoop/slave`
+- Edit slaves: `~/hadoop/hadoop-2.7.2/etc/hadoop/slaves`
 ```
 hadoop1
 hadoop2

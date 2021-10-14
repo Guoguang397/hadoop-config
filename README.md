@@ -219,7 +219,7 @@ hadoop2
 hadoop3
 ```
 ### 0x06 Format HDFS (On hadoop1)
-- Exec: `bin/hdfs namenode-format`
+- Exec: `hdfs namenode -format`
 
 This command should be run only once.
 
@@ -229,9 +229,9 @@ This command should be run only once.
 - Download file from hdfs: `hdfs dfs -get <src> <dst>`
 
 ### 0x08 Execute Jar on Hadoop
-- Make directory: `bin/hdfs dfs -mkdir -p /user/root/input`
-- Upload files: `bin/hdfs dfs -put <local> /user/root/input`
-- Execute jar: `bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/root/input /user/root/output`
+- Make directory: `hdfs dfs -mkdir -p /user/root/input`
+- Upload files: `hdfs dfs -put <local> /user/root/input`
+- Execute jar: `hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/root/input /user/root/output`
 
 **Notice:** output folder should **NOT** be created before launch jar file.
 

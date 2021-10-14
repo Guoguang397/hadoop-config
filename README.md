@@ -154,7 +154,7 @@ export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
 
 <!-- Log aggregation retain (s) -->
 <property>
-    <name>yarn.log-aggregation.retain</name>
+    <name>yarn.log-aggregation.retain-seconds</name>
     <value>604800</value>
 </property>
 

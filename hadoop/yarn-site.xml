@@ -42,7 +42,7 @@
 
 <!-- Log aggregation retain (s) -->
 <property>
-    <name>yarn.log-aggregation.retain</name>
+    <name>yarn.log-aggregation.retain-seconds</name>
     <value>604800</value>
 </property>
 

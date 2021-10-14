@@ -162,8 +162,8 @@ export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
 ```
 
 ---
-#### maprd-site.xml
-- Mapreduce config: `~/hadoop/hadoop-2.7.2/etc/hadoop/maprd-site.xml`
+#### mapred-site.xml
+- Mapreduce config: `~/hadoop/hadoop-2.7.2/etc/hadoop/mapred-site.xml`
 ```xml
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
